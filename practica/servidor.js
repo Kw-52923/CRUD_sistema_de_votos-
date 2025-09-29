@@ -6,7 +6,7 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const app = express();
-
+ require('./temasdb')
 // Conectar motor de plantillas EJS
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
