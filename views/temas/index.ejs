@@ -1,0 +1,10 @@
+<h1>Temas</h1>
+<ul>
+    <% temas.forEach(t => { %>
+    <li><%= t.titulo %></li> <%}) %>
+</ul>
+
+<form method="POST">
+    <input name="titulo" placeholder="Nuevo tema"/>
+    <button>Crear</button>
+</form>

@@ -6,15 +6,15 @@
 
 // 👉 Ejercicio: Haz que /temas liste todos los temas y permita crear uno nuevo con un formulario.
 
-const temasdb = require("./temasdb");
+const temasdb = require("../temasdb");
 
 // Crear tema
-function crearTema(tema){
-    return temasdb.prepare("INSERT INTO temas(tema) VALUES (?)").run(tema);
+function crearTema(titulo){
+    return temasdb.prepare("INSERT INTO temas(titulo) VALUES (?)").run(titulo);
 }
 
 // Listar tema
-function listarTemas(tema){
+function listarTemas(){
     return temasdb.prepare("SELECT * FROM temas").all();
 }
 
@@ -24,11 +24,13 @@ function obtenerTema(id){
 }
 
 // Actualizar tema
-function actualizarTema(id, nuevoTema){
-    return temasdb.prepare("UPDATE temas SET tema = ? WHERE id = ?").run(nuevoTema.trim(), id);
+function actualizarTema(id, titulo){
+    return temasdb.prepare("UPDATE temas SET titulo = ? WHERE id = ?").run(titulo, id);
 }
 
 // borrarTema.
 function borrarTema(id){
     return temasdb.prepare("DELETE FROM temas  WHERE id = ?").run(Number(id));
 }
+
+module.exports = {crearTema, listarTemas,obtenerTema,actualizarTema,borrarTema}
