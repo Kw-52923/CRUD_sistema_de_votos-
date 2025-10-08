@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Temas</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; }
+    .fila { display: flex; gap: 8px; align-items: center; }
+    button { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1><a href="/temas">Temas</a></h1><hr/>
+  <main><%- body %></main>
+
+  <!-- JS para votaciones en tiempo real -->
+  <script>
+  document.addEventListener("click", e => {
+    if (e.target.matches(".btn-voto")) {
+      e.preventDefault();
+      const form = e.target.closest("form");
+      fetch(form.action, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams(new FormData(form))
+      })
+      .then(r => r.json())
+      .then(data => {
+        form.closest("li,div").querySelector("b").textContent = data.votos;
+      });
+    }
+  });
+  </script>
+</body>
+</html>
